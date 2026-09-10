@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
 import { convertMillisecondsToCorrectDate } from '../util/util.js';
 
 import './checkout-header.css';
@@ -10,10 +9,14 @@ import { formatPriceCents } from '../util/util.js';
 
 function CheckoutPage({ cartTotalQuantity, cart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
+    const [paymentSummary, setPaymentSummary] = useState(null);
 
     useEffect(() => {
         axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
             .then(response => setDeliveryOptions(response.data));
+
+        axios.get('/api/payment-summary')
+            .then(response => setPaymentSummary(response.data));
     }, []);
 
     return (
@@ -50,7 +53,7 @@ function CheckoutPage({ cartTotalQuantity, cart }) {
                                 const { quantity } = cartItem;
                                 const { id, name, image, priceCents } = cartItem.product;
 
-                                const selectedDeliveryOption = 
+                                const selectedDeliveryOption =
                                     deliveryOptions.find(deliveryOption => deliveryOption.id === cartItem.deliveryOptionId);
 
                                 return (
@@ -96,9 +99,9 @@ function CheckoutPage({ cartTotalQuantity, cart }) {
 
                                                         {
                                                             (priceCents > 0) &&
-                                                                (priceString = `${formatPriceCents(deliveryOption. priceCents)} - Shipping`)
+                                                                (priceString = `${formatPriceCents(deliveryOption.priceCents)} - Shipping`)
 
-                                                        } 
+                                                        }
 
                                                         return (
                                                             <div className="delivery-option" key={deliveryOption.id}>
@@ -128,40 +131,44 @@ function CheckoutPage({ cartTotalQuantity, cart }) {
                         }
                     </div>
 
-                    <div className="payment-summary">
-                        <div className="payment-summary-title">
-                            Payment Summary
-                        </div>
+                    {paymentSummary && (
+                        <>
+                            <div className="payment-summary">
+                                <div className="payment-summary-title">
+                                    Payment Summary
+                                </div>
 
-                        <div className="payment-summary-row">
-                            <div>Items ({cartTotalQuantity}):</div>
-                            <div className="payment-summary-money">$42.75</div>
-                        </div>
+                                <div className="payment-summary-row">
+                                    <div>Items ({cartTotalQuantity}):</div>
+                                    <div className="payment-summary-money">{formatPriceCents(paymentSummary.productCostCents)}</div>
+                                </div>
 
-                        <div className="payment-summary-row">
-                            <div>Shipping &amp; handling:</div>
-                            <div className="payment-summary-money">$4.99</div>
-                        </div>
+                                <div className="payment-summary-row">
+                                    <div>Shipping &amp; handling:</div>
+                                    <div className="payment-summary-money">{formatPriceCents(paymentSummary.shippingCostCents)}</div>
+                                </div>
 
-                        <div className="payment-summary-row subtotal-row">
-                            <div>Total before tax:</div>
-                            <div className="payment-summary-money">$47.74</div>
-                        </div>
+                                <div className="payment-summary-row subtotal-row">
+                                    <div>Total before tax:</div>
+                                    <div className="payment-summary-money">{formatPriceCents(paymentSummary.totalCostBeforeTaxCents)}</div>
+                                </div>
 
-                        <div className="payment-summary-row">
-                            <div>Estimated tax (10%):</div>
-                            <div className="payment-summary-money">$4.77</div>
-                        </div>
+                                <div className="payment-summary-row">
+                                    <div>Estimated tax (10%):</div>
+                                    <div className="payment-summary-money">{formatPriceCents(paymentSummary.taxCents)}</div>
+                                </div>
 
-                        <div className="payment-summary-row total-row">
-                            <div>Order total:</div>
-                            <div className="payment-summary-money">$52.51</div>
-                        </div>
+                                <div className="payment-summary-row total-row">
+                                    <div>Order total:</div>
+                                    <div className="payment-summary-money">{formatPriceCents(paymentSummary.totalCostCents)}</div>
+                                </div>
 
-                        <button className="place-order-button button-primary">
-                            Place your order
-                        </button>
-                    </div>
+                                <button className="place-order-button button-primary">
+                                    Place your order
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </>
