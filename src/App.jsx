@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     //get cart from backend
-    axios.get('/api/cart-items')
+    axios.get('/api/cart-items?expand=product')
     .then(response => setCart(response.data));
   }, []);
 
@@ -33,7 +33,7 @@ function App() {
 
       <Route 
         path='/checkout'
-        element={<CheckoutPage cartTotalQuantity={totalQuantity} />} />
+        element={<CheckoutPage cartTotalQuantity={totalQuantity} cart={cart} />} />
 
       <Route
         path='/orders' element={<OrdersPage />} />

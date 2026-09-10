@@ -47,7 +47,7 @@ function HomePage({ cartTotalQuantity }) {
                                 </div>
 
                                 <div className="product-price">
-                                    ${formatPriceCents(priceCents)}
+                                    {formatPriceCents(priceCents)}
                                 </div>
 
                                 <div className="product-quantity-container">
