@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import HomePage from './pages/HomePage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import OrdersPage from './pages/OrdersPage.jsx';
@@ -5,15 +8,36 @@ import TrackingPage from './pages/TrackingPage.jsx';
 
 import { Routes, Route } from 'react-router';
 
+function getTotalCartItemsQuantity(cart) {
+    let totalQuantity = 0;
+    cart.forEach(cartItem => totalQuantity += cartItem.quantity);
+    return totalQuantity;
+}
+
 function App() {
+  const [ cart, setCart ] = useState([]);
+
+  useEffect(() => {
+    //get cart from backend
+    axios.get('/api/cart-items')
+    .then(response => setCart(response.data));
+  }, []);
+
+  const totalQuantity = getTotalCartItemsQuantity(cart);
+
   return(
     <Routes>
       <Route 
-        index element={<HomePage />} />
+        index
+        element={<HomePage cartTotalQuantity={totalQuantity} />} />
+
       <Route 
-        path='/checkout' element={<CheckoutPage />} />
+        path='/checkout'
+        element={<CheckoutPage cartTotalQuantity={totalQuantity} />} />
+
       <Route
         path='/orders' element={<OrdersPage />} />
+
       <Route
         path='/tracking' element={<TrackingPage />} />
     </Routes>
