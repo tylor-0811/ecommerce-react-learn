@@ -9,20 +9,23 @@ import './HomePage.css';
 
 function HomePage() {
     const [ products, setProducts ] = useState([]);
+    const [ cart, setCart ] = useState([]);
 
     useEffect(() => {
+        //get products from backend
         axios.get('http://localhost:3000/api/products')
-        .then(response => {
-            console.log(response.data);
-            setProducts(response.data);
-        });
+        .then(response => setProducts(response.data));
+
+        //get cart from backend
+        axios.get('http://localhost:3000/api/cart-items')
+        .then(response => setCart(response.data));
     }, []);
 
     return (
         <>
             <title>Ecommerce Project</title>
 
-            <Header />
+            <Header cart={cart} />
             <div className="home-page">
                 <div className="products-grid">
                     {products.map(product => {
