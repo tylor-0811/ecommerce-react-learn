@@ -36,7 +36,7 @@ function App() {
         element={<CheckoutPage cartTotalQuantity={totalQuantity} cart={cart} />} />
 
       <Route
-        path='/orders' element={<OrdersPage />} />
+        path='/orders' element={<OrdersPage cartTotalQuantity={totalQuantity} />} />
 
       <Route
         path='/tracking' element={<TrackingPage />} />
