@@ -17,14 +17,13 @@ function getTotalCartItemsQuantity(cart) {
 function App() {
   const [ cart, setCart ] = useState([]);
 
-  useEffect(() => {
-    //get cart from backend
-    const getCartData = async () => {
+  const loadCart = async () => {
       const response = await axios.get('/api/cart-items?expand=product');
-       setCart(response.data);
-    };
+      setCart(response.data);
+  };
 
-    getCartData();
+  useEffect(() => {
+    loadCart();
   }, []);
 
   const totalQuantity = getTotalCartItemsQuantity(cart);
@@ -33,7 +32,7 @@ function App() {
     <Routes>
       <Route 
         index
-        element={<HomePage cartTotalQuantity={totalQuantity} />} />
+        element={<HomePage cartTotalQuantity={totalQuantity} loadCart={loadCart} />} />
 
       <Route 
         path='/checkout'

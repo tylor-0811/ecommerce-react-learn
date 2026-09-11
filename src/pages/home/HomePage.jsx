@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import './HomePage.css';
 
-function HomePage({ cartTotalQuantity }) {
+function HomePage({ cartTotalQuantity, loadCart }) {
     const [ products, setProducts ] = useState([]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function HomePage({ cartTotalQuantity }) {
             <Header cartTotalQuantity={cartTotalQuantity} />
             
             <div className="home-page">
-                <ProductsGrid products={products} />
+                <ProductsGrid products={products} loadCart={loadCart} />
             </div>
         </>
     );
