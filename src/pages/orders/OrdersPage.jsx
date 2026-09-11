@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect, Fragment } from 'react';
 
-import Header from '../components/Header.jsx';
+import Header from '../../components/Header.jsx';
 
 import './OrdersPage.css';
 
-import { convertMillisecondsToCorrectDate, formatPriceCents } from '../util/util.js';
+import { convertMillisecondsToCorrectDate, formatPriceCents } from '../../util/util.js';
 
 function OrdersPage({ cartTotalQuantity }) {
     const [orders, setOrders] = useState([]);
