@@ -10,9 +10,13 @@ function HomePage({ cartTotalQuantity }) {
     const [ products, setProducts ] = useState([]);
 
     useEffect(() => {
-        //get products from backend
-        axios.get('/api/products')
-        .then(response => setProducts(response.data));
+        const getProductsData = async () => {
+            const response = await axios.get('/api/products');
+            setProducts(response.data);
+        };
+
+        //get products data from backend
+        getProductsData();
     }, []);
 
     return (

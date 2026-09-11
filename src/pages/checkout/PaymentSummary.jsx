@@ -1,6 +1,6 @@
 import { formatPriceCents } from '../../util/util.js';
 
-function PaymentSummary({ paymentSummary, cartTotalQuantity }) {
+function PaymentSummary({ paymentSummary }) {
     return (
         <div className="payment-summary">
             <div className="payment-summary-title">
@@ -8,7 +8,7 @@ function PaymentSummary({ paymentSummary, cartTotalQuantity }) {
             </div>
 
             <div className="payment-summary-row">
-                <div>Items ({cartTotalQuantity}):</div>
+                <div>Items ({paymentSummary.totalItems}):</div>
                 <div className="payment-summary-money">{formatPriceCents(paymentSummary.productCostCents)}</div>
             </div>
 

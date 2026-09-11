@@ -11,8 +11,12 @@ function OrdersPage({ cartTotalQuantity }) {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/orders?expand=products')
-            .then(response => setOrders(response.data));
+        const getOrdersData = async () => {
+            const ordersResponse = await axios.get('/api/orders?expand=products');
+            setOrders(ordersResponse.data)
+        };
+
+        getOrdersData();
     }, []);
     return (
         <>

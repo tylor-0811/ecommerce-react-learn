@@ -15,9 +15,7 @@ function OrderSummary({ cart, deliveryOptions }) {
                     return (
                         <div className="cart-item-container" key={id}>
                             <div className="delivery-date">
-                                Delivery date: {
-                                    convertMillisecondsToCorrectDate(selectedDeliveryOption.estimatedDeliveryTimeMs)
-                                }
+                                Delivery date: {convertMillisecondsToCorrectDate(selectedDeliveryOption.estimatedDeliveryTimeMs)}
                             </div>
 
                             <div className="cart-item-details-grid">
