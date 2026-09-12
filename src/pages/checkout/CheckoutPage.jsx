@@ -43,7 +43,7 @@ export default function CheckoutPage({ cartTotalQuantity, cart, loadCart }) {
 
                 <div className="checkout-grid">
                     {deliveryOptions.length > 0 && <OrderSummary cart={cart} deliveryOptions={deliveryOptions} loadCart={loadCart} />}
-                    {paymentSummary && <PaymentSummary paymentSummary={paymentSummary} />}
+                    {paymentSummary && <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart} />}
                 </div>
             </div>
         </>
