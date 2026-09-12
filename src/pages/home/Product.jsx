@@ -64,7 +64,7 @@ export default function Product({ product, loadCart }) {
                 Added
             </div>
 
-            <button className="add-to-cart-button button-primary" onClick={() => handleAddToCartButtonClick(product.id, quantity, loadCart)}>
+            <button className="add-to-cart-button button-primary" data-testid="add-to-cart-button" onClick={() => handleAddToCartButtonClick(product.id, quantity, loadCart)}>
                 Add to Cart
             </button>
         </div>
