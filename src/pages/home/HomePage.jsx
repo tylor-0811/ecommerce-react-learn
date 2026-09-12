@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import './HomePage.css';
 
-function HomePage({ cartTotalQuantity, loadCart }) {
+export default function HomePage({ cartTotalQuantity, loadCart }) {
     const [ products, setProducts ] = useState([]);
 
     useEffect(() => {
@@ -31,5 +31,3 @@ function HomePage({ cartTotalQuantity, loadCart }) {
         </>
     );
 }
-
-export default HomePage;

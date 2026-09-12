@@ -1,4 +1,4 @@
-function CheckoutHeader({ cartTotalQuantity }) {
+export default function CheckoutHeader({ cartTotalQuantity }) {
     return (
         <div className="checkout-header">
             <div className="header-content">
@@ -21,5 +21,3 @@ function CheckoutHeader({ cartTotalQuantity }) {
         </div>
     );
 }
-
-export default CheckoutHeader;

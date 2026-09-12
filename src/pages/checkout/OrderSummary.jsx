@@ -1,7 +1,7 @@
 import { convertMillisecondsToCorrectDate, formatPriceCents } from '../../util/util.js';
 import DeliveryOptions from './DeliveryOptions.jsx';
 
-function OrderSummary({ cart, deliveryOptions }) {
+export default function OrderSummary({ cart, deliveryOptions, loadCart }) {
     return (
         <div className="order-summary">
             {
@@ -42,7 +42,7 @@ function OrderSummary({ cart, deliveryOptions }) {
                                     </div>
                                 </div>
 
-                                <DeliveryOptions deliveryOptions={deliveryOptions} priceCents={priceCents} cartItem={cartItem} />
+                                <DeliveryOptions deliveryOptions={deliveryOptions} priceCents={priceCents} cartItem={cartItem} loadCart={loadCart} />
                             </div>
                         </div>
                     );
@@ -51,5 +51,3 @@ function OrderSummary({ cart, deliveryOptions }) {
         </div>
     );
 }
-
-export default OrderSummary;

@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 
 import './header.css';
 
-function Header({ cartTotalQuantity }) {
+export default function Header({ cartTotalQuantity }) {
     return (
         <div className="header">
             <div className="left-section">
@@ -37,5 +37,3 @@ function Header({ cartTotalQuantity }) {
         </div>
     );
 }
-
-export default Header;

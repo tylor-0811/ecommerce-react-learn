@@ -14,7 +14,7 @@ function getTotalCartItemsQuantity(cart) {
     return totalQuantity;
 }
 
-function App() {
+export default function App() {
   const [ cart, setCart ] = useState([]);
 
   const loadCart = async () => {
@@ -36,7 +36,7 @@ function App() {
 
       <Route 
         path='/checkout'
-        element={<CheckoutPage cartTotalQuantity={totalQuantity} cart={cart} />} />
+        element={<CheckoutPage cartTotalQuantity={totalQuantity} cart={cart} loadCart={loadCart} />} />
 
       <Route
         path='/orders' element={<OrdersPage cartTotalQuantity={totalQuantity} />} />
@@ -46,5 +46,3 @@ function App() {
     </Routes>
   );
 }
-
-export default App

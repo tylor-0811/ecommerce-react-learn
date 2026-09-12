@@ -1,7 +1,7 @@
 import Header from '../../components/Header.jsx';
 import './TrackingPage.css';
 
-function TrackingPage({ cartTotalQuantity }) {
+export default function TrackingPage({ cartTotalQuantity }) {
     return (
         <>
             <title>Tracking</title>
@@ -48,5 +48,3 @@ function TrackingPage({ cartTotalQuantity }) {
         </>
     );
 }
-
-export default TrackingPage;

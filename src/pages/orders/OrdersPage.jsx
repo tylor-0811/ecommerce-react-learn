@@ -7,7 +7,7 @@ import './OrdersPage.css';
 
 import { convertMillisecondsToCorrectDate, formatPriceCents } from '../../util/util.js';
 
-function OrdersPage({ cartTotalQuantity }) {
+export default function OrdersPage({ cartTotalQuantity }) {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
@@ -96,5 +96,3 @@ function OrdersPage({ cartTotalQuantity }) {
         </>
     );
 }
-
-export default OrdersPage;

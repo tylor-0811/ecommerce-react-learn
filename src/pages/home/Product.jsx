@@ -16,7 +16,7 @@ function selectQuantity(event, setQuantity) {
     setQuantity(Number(value));
 }
 
-function Product({ product, loadCart }) {
+export default function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
 
     return (
@@ -70,5 +70,3 @@ function Product({ product, loadCart }) {
         </div>
     );
 }
-
-export default Product;
