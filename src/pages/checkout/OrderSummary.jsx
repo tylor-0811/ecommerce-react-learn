@@ -1,5 +1,6 @@
 import { convertMillisecondsToCorrectDate, formatPriceCents } from '../../util/util.js';
 import DeliveryOptions from './DeliveryOptions.jsx';
+import axios from 'axios';
 
 export default function OrderSummary({ cart, deliveryOptions, loadCart }) {
     return (
@@ -11,6 +12,11 @@ export default function OrderSummary({ cart, deliveryOptions, loadCart }) {
 
                     const selectedDeliveryOption =
                         deliveryOptions.find(deliveryOption => deliveryOption.id === cartItem.deliveryOptionId);
+
+                    const deleteCartItem = async () => {
+                        await axios.delete(`/api/cart-items/${id}`);
+                        await loadCart();
+                    };
 
                     return (
                         <div className="cart-item-container" key={id}>
@@ -36,7 +42,7 @@ export default function OrderSummary({ cart, deliveryOptions, loadCart }) {
                                         <span className="update-quantity-link link-primary">
                                             Update
                                         </span>
-                                        <span className="delete-quantity-link link-primary">
+                                        <span className="delete-quantity-link link-primary" onClick={deleteCartItem}>
                                             Delete
                                         </span>
                                     </div>
